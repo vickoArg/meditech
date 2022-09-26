@@ -9,6 +9,7 @@ const VeterinariasSchema = Schema({
         type: String,
     },
     usuario:{
+        require:true,
         type:Schema.Types.ObjectId,
         ref:'Usuario'
     }
@@ -16,8 +17,7 @@ const VeterinariasSchema = Schema({
 
 VeterinariasSchema.method('toJSON', function() {
     const {__v, ...object} = this.toObject();  
-    object.uid = _id;
     return object;
 })
 
-module.exports = model( 'veterinaria', VeterinariasSchema );
+module.exports = model( 'Veterinaria', VeterinariasSchema );

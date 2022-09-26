@@ -15,6 +15,7 @@ dbConnection();
 app.use('/api/usuarios', require('./routes/usuarios'));
 app.use('/api/veterinarias', require('./routes/veterinarias'));
 app.use('/api/medicos', require('./routes/medicos'));
+app.use('/api/busqueda', require('./routes/busqueda'));
 app.use('/api/login', require('./routes/auth'));
 
 app.listen(process.env.PORT, ()=>{

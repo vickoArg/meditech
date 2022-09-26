@@ -10,17 +10,18 @@ const MedicosSchema = Schema({
     },
     usuario:{
         type:Schema.Types.ObjectId,
-        ref:'Usuario'
+        ref:'Usuario',
+        required:true
     },
     veterinaria:{
         type:Schema.Types.ObjectId,
-        ref:'veterinaria'
+        ref:'Veterinaria',
+        required:true
     }
 }, { collection: 'medicos' });
 
 MedicosSchema.method('toJSON', function() {
-    const {__v, ...object} = this.toObject();  
-    object.uid = _id;
+    const {__v, ...object} = this.toObject();
     return object;
 })
 

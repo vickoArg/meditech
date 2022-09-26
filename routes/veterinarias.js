@@ -15,7 +15,11 @@ const router = Router();
 router.get('/', getVeterinarias );
 
 router.post('/', 
-    [],
+    [
+        validarJWT,  
+        check('nombre', 'El nombre de la veterinaria es necesario').not().isEmpty(),
+        validarCampos
+    ],
     crearVeterinaria
 );
 
