@@ -2,13 +2,19 @@
     Ruta: /api/uploads
 */
 const { Router } = require('express');
-const expressFileUpload = require('express-fileupload');
+// const expressFileUpload = require('express-fileupload');
 const { validarJWT } = require('../helpers/validar-jwt');
 const { fileUploads, retornaImagen } = require('../controllers/uploads');
+const path = require('path');
+const multer = require('multer');
 
 const router = Router();
 
-router.use(expressFileUpload());
+// router.use(expressFileUpload());
+const storage = multer.diskStorage({
+    destination:path.join(__dirname,'../uploads')
+});
+router.use(multer({storage}).array('imagen',3));
 
 router.get('/:tipo/:foto',
     [

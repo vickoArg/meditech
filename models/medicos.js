@@ -6,7 +6,7 @@ const MedicosSchema = Schema({
         required: true
     },
     img:{
-        type: String,
+        type: Object,
     },
     usuario:{
         type:Schema.Types.ObjectId,

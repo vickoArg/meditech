@@ -8,17 +8,20 @@ const borrarImagen = (path) =>{
         fs.unlinkSync(path)
     }
 }
-const actualizarImagen = async(tipo, id, nombreArchivo) =>{
-    let pathViejo;
+const actualizarImagen = async(tipo, id, result, path) =>{
+    let dataImage={
+        url:result.url,
+        id:result.public_id
+    };
     switch (tipo){
         case 'medicos':
             const medico = await Medico.findById(id);
             if(!medico){
                 return false;
             }
-            pathViejo = `./uploads/medicos/${medico.img}`;
-            borrarImagen(pathViejo);
-            medico.img = nombreArchivo;
+            // pathViejo = `./uploads/medicos/${medico.img}`;
+            borrarImagen(path);
+            medico.img = dataImage;
             await medico.save();
             return true;
             break;
@@ -27,9 +30,9 @@ const actualizarImagen = async(tipo, id, nombreArchivo) =>{
             if(!veterinaria){
                 return false;
             }
-            pathViejo = `./uploads/veterinarias`;
-            borrarImagen(pathViejo);
-            veterinaria.img = nombreArchivo;
+            // pathViejo = `./uploads/veterinarias`;
+            borrarImagen(path);
+            veterinaria.img = dataImage;
             await veterinaria.save();
             return true;
             break;
@@ -38,9 +41,9 @@ const actualizarImagen = async(tipo, id, nombreArchivo) =>{
             if(!usuario){
                 return false;
             }
-            pathViejo = `./uploads/usuarios`;
-            borrarImagen(pathViejo);
-            usuario.img = nombreArchivo;
+            // pathViejo = `./uploads/usuarios`;
+            borrarImagen(path);
+            usuario.img = dataImage;
             await usuario.save();
             return true;
             break;
